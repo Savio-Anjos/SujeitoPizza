@@ -28,7 +28,7 @@ export default function SignUp() {
       event.preventDefault();
  
       if(name === '' || email === '' || password === '') {
-       toast.warning("Preencha os campos!")
+       toast.error("Preencha os campos!")
         return;
       }
 
