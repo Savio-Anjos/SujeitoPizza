@@ -4,7 +4,7 @@ import { AuthTokenError } from "../services/errors/AuthTokenError";
 
 
 //função para páginas que só users logados podem ter acesso.
-export function canSSRAuthAuth<P>(fn: GetServerSideProps<P>) {
+export function canSSRAuth<P>(fn: GetServerSideProps<P>) {
 return async (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<P>> => {
     const cookies = parseCookies(ctx);
 
