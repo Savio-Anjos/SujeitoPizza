@@ -3,6 +3,11 @@ import Head from "next/head";
 import { Header } from "../../components/Header";
 import styles from './styles.module.scss'
 
+import { setupAPIClient } from '../../services/api';
+import { toast } from 'react-toastify';
+
+import { canSSRAuth } from '../../utils/canSSRAuth';
+
 
  export default function Categoty() {
 
@@ -11,7 +16,17 @@ import styles from './styles.module.scss'
     async function handleRegister(event:FormEvent) {
         event.preventDefault();
 
-        alert("CATEGORIA " + name)
+        if(name === '') {
+            return;
+        }
+
+        const apiCliente = setupAPIClient();
+        await apiCliente.post('/category', {
+            name: name
+        })
+
+        toast.success("Categoria cadastrada com sucesso!");
+        setName('');
     }
 
     return (
@@ -44,3 +59,10 @@ import styles from './styles.module.scss'
         </>
     )
  }
+
+ export const getServerSideProps = canSSRAuth(async (ctx) => {
+
+    return {
+        props: {}
+    }
+ })
