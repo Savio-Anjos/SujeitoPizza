@@ -8,6 +8,10 @@ import { FiRefreshCcw } from 'react-icons/fi';
 
 import { setupAPIClient } from '../../services/api'; 
 
+import { ModalOrder } from '../../components/ModalOrder';
+
+import Modal from 'react-modal';
+
 type OrderProps = {
   id: string;
   table: string | number;
@@ -20,13 +24,52 @@ interface HomeProps {
   orders: OrderProps[];
 }
 
+export type OrderItemProps = {
+  id: string;
+  amount: number;
+  order_id: string;
+  product_id: string;
+  product: {
+    id: string;
+    name: string;
+    description: string;
+    price: string;
+    banner: string;
+  }
+  order: {
+    id: string
+    table: string | number;
+    status: boolean;
+    name: string | null;
+  }
+}
+
   export default function Dashboard({ orders }: HomeProps) {
 
     const [orderList, setOrderList] = useState(orders || []);
 
-    function handleOpenModalView(id: string) {
-      alert("ID CLICADO " + id)
+    const [modalItem, setModalItem] = useState<OrderItemProps[]>();
+    const[modaVisible, setModalVisible] =useState(false);
+
+    function handleCloseModal() {
+      setModalVisible(false);
     }
+
+    async function handleOpenModalView(id: string) {
+      
+      const apiClient = setupAPIClient();
+
+      const response = await apiClient.get('/order/detail', {
+        params: {
+          order_id: id,
+        }
+      })
+
+      setModalItem(response.data);
+      setModalVisible(true);
+    }
+
+    Modal.setAppElement('#__next');
 
     return (
       <>
@@ -61,6 +104,11 @@ interface HomeProps {
             </article>
            
           </main>
+
+          { modaVisible && (
+            <ModalOrder />
+          )}
+
         </div>
         </>
     )
