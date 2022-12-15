@@ -93,7 +93,7 @@ export type OrderItemProps = {
     Modal.setAppElement('#__next');
 
     return (
-      <>
+      <>  
       <Head>
         <title>Painel - Sujeito Pizzaria</title>
       </Head>
