@@ -106,7 +106,11 @@ export type OrderItemProps = {
           </main>
 
           { modaVisible && (
-            <ModalOrder />
+            <ModalOrder 
+            isOpen={modaVisible}
+            onRequestClose={handleCloseModal}
+            order={modalItem}
+            />
           )}
 
         </div>
