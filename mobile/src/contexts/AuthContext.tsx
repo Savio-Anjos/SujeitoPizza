@@ -1,5 +1,7 @@
 import React, { useState, createContext, ReactNode } from 'react';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { api } from '../services/api';
 
 type AutyConTextData = {
@@ -51,6 +53,14 @@ export function AuthProvider({children}: AuthProviderProps) {
         //console.log(response.data)
 
         const { id, name, token } = response.data;
+
+        const data = {
+            ...response.data
+        };
+
+        await AsyncStorage.setItem('@sujeitopizzaria', JSON.stringify(data))
+
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
         setUser({
             id,
