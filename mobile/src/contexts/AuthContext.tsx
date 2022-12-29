@@ -48,7 +48,18 @@ export function AuthProvider({children}: AuthProviderProps) {
             password
         })
 
-        console.log(response.data)
+        //console.log(response.data)
+
+        const { id, name, token } = response.data;
+
+        setUser({
+            id,
+            name,
+            email,
+            token,
+        })
+
+        setLoadingAuth(false);
 
        } catch (err) {
         console.log('Erro ao acessar', err)
