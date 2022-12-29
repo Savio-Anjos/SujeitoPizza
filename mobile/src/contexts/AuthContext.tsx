@@ -1,5 +1,7 @@
 import React, { useState, createContext, ReactNode } from 'react';
 
+import { api } from '../services/api';
+
 type AutyConTextData = {
     user: UserProps;
     isAuthenticated: boolean;
@@ -32,11 +34,27 @@ export function AuthProvider({children}: AuthProviderProps) {
         token: '',
     })
 
+    const [loadingAuth, setLoadingAuth] = useState(false)
+
     const isAuthenticated = !!user.name; 
 
     async function signIn({ email, password }: SignInProps) {
-       console.log(email)
-       console.log(password)
+       setLoadingAuth(true)
+       
+
+       try {
+        const response = await api.post('/session', {
+            email,
+            password
+        })
+
+        console.log(response.data)
+
+       } catch (err) {
+        console.log('Erro ao acessar', err)
+        setLoadingAuth(true);
+       }
+       
     }
 
     return (
