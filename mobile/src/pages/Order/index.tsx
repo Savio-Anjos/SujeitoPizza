@@ -31,6 +31,12 @@ type ProductProps = {
     name: string;
 }
 
+type ItemProps = {
+    id: string;
+    name: string;
+    amount: string | number;
+}
+
 type OrderRouteProps = RouteProp<RouterDetailParams, 'Order'>;
 
 export default function Order() {
@@ -46,6 +52,8 @@ export default function Order() {
     const [modalProductVisible, setModalProductVisible] = useState(false);
 
     const [amount, setAmount] = useState('1');
+
+    const [items, setItems] = useState<ItemProps[]>([]);
 
     useEffect(() => {
         async function loadInfo() {
@@ -142,7 +150,10 @@ export default function Order() {
                     <Text style={styles.buttonText}>+</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button}>
+                <TouchableOpacity 
+                style={[styles.button, { opacity: items.length === 0 ? 0.3 : 1 }]}
+                disabled={items.length === 0}
+                >
                     <Text style={styles.buttonText}>Avançar</Text>
                 </TouchableOpacity>
             </View>
