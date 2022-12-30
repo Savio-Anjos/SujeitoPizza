@@ -109,6 +109,26 @@ export default function Order() {
             console.log(err)
         }
     }
+   
+    //Adicionando um produto nessa mesa
+    async function handleAdd() {
+        const response = await api.post('/order/Add', {
+            order_id: route.params.order_id,
+            product_id: productSelected?.id,
+            amount: Number(amount)
+        })
+
+        let data = {
+            id: response.data.id as string,
+            product_id: productSelected,
+            name: productSelected?.name as string,
+            amount: amount
+    }
+
+    setItems(oldArray => [...oldArray, data])
+
+}
+
 
     return (
         <View style={styles.container}>
@@ -148,7 +168,7 @@ export default function Order() {
             </View>
 
             <View style={styles.actions}>
-                <TouchableOpacity style={styles.buttonAdd}>
+                <TouchableOpacity style={styles.buttonAdd} onPress={handleAdd}>
                     <Text style={styles.buttonText}>+</Text>
                 </TouchableOpacity>
 
