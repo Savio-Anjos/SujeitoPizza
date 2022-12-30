@@ -5,7 +5,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     TextInput,
-    Modal
+    Modal,
+    FlatList
   } from 'react-native';
 
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
@@ -13,6 +14,7 @@ import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
 import { api } from "../../services/api";
 import { ModalPicker } from "../../components/ModalPicker";
+import { ListItem } from "../../components/ListItem";
 
 type RouterDetailParams = {
     Order: {
@@ -157,6 +159,14 @@ export default function Order() {
                     <Text style={styles.buttonText}>Avançar</Text>
                 </TouchableOpacity>
             </View>
+
+            <FlatList 
+            showsVerticalScrollIndicator={false}
+            style={ { flex: 1, marginTop: 24 } }
+            data={items}
+            keyExtractor={(item) => item.id }
+            renderItem={ ({ item }) => <ListItem data={item}/>}
+            />
 
             <Modal
               transparent={true}
