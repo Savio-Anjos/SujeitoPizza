@@ -18,7 +18,7 @@ type RouteDetailProps = {
   const route = useRoute<FinishOrderRouteProp>();
 
   async function handleFinish() {
-    alert('clicou')
+    alert('clicou') 
   }
 
     return (
