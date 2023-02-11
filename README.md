@@ -71,7 +71,7 @@ npm run dev
 
 ## 🖼️ Layout
 <img src=".github/dashboard.png">
-<img src=".github/filmes.png">
+<img src=".github/produtos.png">
 
 ---
 <p>Criado com 💙 por <a href='https://github.com/Savio-Anjos/' target='_blank'>Sávio Anjos</a></p>
