@@ -29,7 +29,7 @@ Esse projeto está utilizando as seguintes tecnologias:
 ## 🎲 Como utilizar
 ### Clone esse repositório
 ```bash
-git clone https://github.com/Savio-Anjos/Organize-Flix.git
+git clone https://github.com/Savio-Anjos/SujeitoPizza.git
 
 ```
 ### Navegue até o diretório backend
