@@ -20,11 +20,11 @@ Esse projeto está utilizando as seguintes tecnologias:
 ## ⚙️ Funcionalidades
 - Sistema de cadastro e login de usuários;
 - Criar novas categorias;
-- Listar filmes por categoria;
-- Cadastrar novos filmes;
-- Envio de imagem para logo do filme;
-- Deletar filme;
-- Adicionar e remover dos favoritos;
+- Listar produtos por categoria;
+- Cadastrar novos produtos;
+- Envio de imagem para logo do produto;
+- Deletar produto;
+- Criar uma ordem e adicionar pedidos;
 
 ## 🎲 Como utilizar
 ### Clone esse repositório
